@@ -6,7 +6,7 @@ const users = require("./routers/users.router.js");
 const playlists = require("./routers/playlists.router")
 const isAuthenticated = require("./middleware/isAuthenticated")
 const app = express();
-const PORT = 3000;
+const port = 3000;
 app.use(cors());
 app.use(express.json())
 
@@ -46,4 +46,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => console.log("Server is running on port...", PORT));
+app.listen(process.env.PORT || port, () => console.log("Server is running on port...", port));

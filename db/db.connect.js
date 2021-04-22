@@ -6,6 +6,7 @@ async function initializeDBConnection() {
     await mongoose.connect("mongodb+srv://KnackOfAbhinav:Abhinav2506@universe.stqwv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
       useUnifiedTopology: true,
       useNewUrlParser: true,
+      useCreateIndex: true
     }).then(() => console.log("successfully connected"))
 
   } catch (err){

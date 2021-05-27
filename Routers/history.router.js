@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const { User } = require("../models/user.model");
 
-router.post("/history", async (req, res) => {
+router.post("/", async (req, res) => {
   const { userId, videoId } = req.body;
   try {
     const user = await User.findById(userId);

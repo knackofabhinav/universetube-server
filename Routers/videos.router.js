@@ -1,7 +1,7 @@
 const express = require("express");
 const { Video } = require("../models/video.model");
 const router = express.Router();
-const { extend } = require("lodash")
+const { extend } = require("lodash");
 
 router
   .route("/")
@@ -32,29 +32,30 @@ router.param("videoId", async (req, res, next, videoId) => {
   try {
     const video = await Video.findById(videoId);
     if (!video) {
-      return res.status(404).json({ success: false, message: "Video not found" });
-
+      return res
+        .status(404)
+        .json({ success: false, message: "Video not found" });
     }
-    req.video = video
-    next()
-  } catch{
-      res.status(400).json({ success: false, message: "Couldn't Retrive Video" })
+    req.video = video;
+    next();
+  } catch {
+    res.status(400).json({ success: false, message: "Couldn't Retrive Video" });
   }
 });
 
 router
-.route("/:videoId")
-.get((req, res) => {
-    const {video} = req
-    video.__v = undefined
-    res.json({success: true, video})
-})
-.post((req, res) => {
-    const updateVideo = req.body
-    let { video } = req
-    video = extend(video, updateVideo)
-    video.save()
-    res.json({success: true, video})
-})
+  .route("/:videoId")
+  .get((req, res) => {
+    const { video } = req;
+    video.__v = undefined;
+    res.json({ success: true, video });
+  })
+  .post((req, res) => {
+    const updateVideo = req.body;
+    let { video } = req;
+    video = extend(video, updateVideo);
+    video.save();
+    res.json({ success: true, video });
+  });
 
 module.exports = router;

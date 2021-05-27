@@ -4,7 +4,13 @@ const PlaylistSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     description: { type: String },
-    videos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
+    videos: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Video",
+        unique: "Video Already Exist in Playlist",
+      },
+    ],
   },
   { timestamps: true }
 );

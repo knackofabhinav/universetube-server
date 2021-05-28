@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
   try {
     const user = await User.findById(userId);
     if (user.history.find((id) => id == videoId)) {
-      res.json({ success: false, message: "Video already exists" });
+      return res.json({ success: false, message: "Video already exists" });
     }
     user.history.push(videoId);
     await user.save();

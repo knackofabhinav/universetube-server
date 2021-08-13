@@ -2,7 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const videolisting = require("../db/videolisting.js");
 const { User } = require("../models/user.model.js");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt-nodejs");
 const router = express.Router();
 
 router.route("/login").post(async (req, res) => {

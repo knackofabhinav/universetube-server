@@ -11,7 +11,7 @@ const history = require("./routers/history.router.js");
 const authenticatedUser = require("./routers/authenticatedUsers.router.js");
 const liked = require("./routers/liked.router.js");
 const { isAuthenticated } = require("./middleware/isAuthenticated");
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use(express.json());
 require("dotenv").config();
 
@@ -50,6 +50,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(process.env.PORT || port, () =>
-  console.log("Server is running on port...", port)
-);
+app.listen(port, () => console.log("Server is running on port...", port));

@@ -8,6 +8,7 @@ router
   .get(async (req, res) => {
     try {
       const videos = await Video.find({});
+      console.log("helloooo");
       res.json({ videos: videos, success: true });
     } catch (err) {
       res.status(500).json({ success: false, message: err.message });

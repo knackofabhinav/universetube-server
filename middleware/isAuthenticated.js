@@ -1,12 +1,12 @@
-const User = require("../models/user.model");
+const jwt = require("jsonwebtoken");
 
 const isAuthenticated = async (req, res, next) => {
-  const { authToken } = req.headers;
+  const authToken = req.headers.authorization;
   if (authToken) {
     try {
-      const user = await User.findById(authToken);
-      if (user) {
-        req.user = user;
+      const decodedToken = jwt.verify(authToken, process.env.SECRET_TOKEN);
+      if (!!decodedToken) {
+        req.userId = JSON.parse(decodedToken);
         next();
       } else {
         return res
@@ -14,7 +14,10 @@ const isAuthenticated = async (req, res, next) => {
           .json({ success: false, message: "Invalid Auth Token" });
       }
     } catch (err) {
-      return res.status(403).json({ success: false, errorMessage: err });
+      console.log(err);
+      return res
+        .status(403)
+        .json({ success: false, message: "authenticate error" });
     }
   } else {
     return res

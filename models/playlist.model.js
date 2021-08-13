@@ -2,13 +2,12 @@ const mongoose = require("mongoose");
 
 const PlaylistSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
+    playlistName: { type: String, required: true },
     description: { type: String },
     videos: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Video",
-        unique: "Video Already Exist in Playlist",
       },
     ],
   },

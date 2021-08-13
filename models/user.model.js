@@ -8,15 +8,9 @@ const UserSchema = new mongoose.Schema(
       unique: "User Already Exists. Please Login",
     },
     password: { type: String, required: true },
-    likedVideos: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "Video", unique: true },
-    ],
-    history: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "Video", unique: true },
-    ],
-    watchLater: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "Video", unique: true },
-    ],
+    likedVideos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
+    history: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
+    watchLater: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
     playlists: [{ type: mongoose.Schema.Types.ObjectId, ref: "Playlist" }],
   },
   { timestamps: true }
